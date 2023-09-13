@@ -1,0 +1,87 @@
+---
+title: "No Title Yet"
+author: "Yukai Yang"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(flextable)
+require(Matching)
+require(sandwich)
+# load the data
+dat = read.table("data230125.dat")
+```
+
+## The Framework of the Causal Effect Analysis
+
+
+```{r makedatm, echo=F}
+source("experiments/datmanip.R")
+flextable(tab) %>%  merge_v() %>% autofit() %>%
+  set_caption(caption = "Variables and descriptions in the analysis")
+```
+
+
+## Results
+
+The analysis of the situation at the three months follow-up. We remove the patients who retired or deceased at 3 month.
+
+```{r exp0, include=F}
+source("experiments/exp0.R")
+```
+
+```{r res0, echo=F}
+tab
+```
+
+```{r exp1, include=F}
+source("experiments/exp1.R")
+```
+
+```{r res1, echo=F}
+#round(tab,4) %>% kbl(align="c") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+tab
+```
+
+```{r exp2, include=F}
+source("experiments/exp2.R")
+```
+
+```{r res2, echo=F}
+#round(tab,4) %>% kbl(align="c") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+tab
+```
+
+```{r exp3, include=F}
+source("experiments/exp3.R")
+```
+
+```{r res3, echo=F}
+#round(tab,4) %>% kbl(align="c") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+tab
+```
+
+
+
+
+## References
+
+Holland P.W. (1986). "Statistics and Causal Inference." Journal of the American Statistical
+Association, 81(396), 945–960.
+
+Splawa-Neyman J. (1923). "On the Application of Probability Theory to Agricultural Experiments. Essay on Principles. Section 9." Statistical Science, 5(4), 465–472. Trans. Dorota M. Dabrowska and Terence P. Speed.
+
+Rubin D.B. (1974). "Estimating Causal Effects of Treatments in Randomized and Nonrandomized Studies." Journal of Educational Psychology, 66, 688–701.
+
+Rubin D.B. (1978). "Bayesian Inference for Causal Effects: The Role of Randomization." The Annals of Statistics, 6(1), 34–58.
+
+Rubin D.B. (1990). "Comment: Neyman (1923) and Causal Inference in Experiments and Observational Studies." Statistical Science, 5(4), 472–480.
+
+Rosenbaum P.R., Rubin D.B. (1983). "The Central Role of the Propensity Score in Observational
+Studies for Causal Effects." Biometrika, 70(1), 41–55.
